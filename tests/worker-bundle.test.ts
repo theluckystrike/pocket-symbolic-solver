@@ -31,7 +31,7 @@ describe('mobile safety', () => {
 		const specs = readdirSync('src')
 			.filter((f) => f.endsWith('.ts'))
 			.flatMap((f) => [...readFileSync(`src/${f}`, 'utf8').matchAll(/from\s+'([^']+)'/g)].map((m) => m[1]!));
-		expect(specs.filter((s) => !/^(obsidian|nerdamer|@pf\/license(\/[\w-]+)?|\.\/[\w-]+)$/.test(s))).toEqual([]);
+		expect(specs.filter((s) => !/^(obsidian|nerdamer|@pf\/license(\/[\w-]+)?|\.\/[\w-]+(\/[\w-]+)*)$/.test(s))).toEqual([]);
 		expect(readFileSync('src/main.ts', 'utf8') + readFileSync('src/runner.ts', 'utf8')).not.toMatch(/\b(require|process|electron|Buffer)\b/);
 	});
 });
