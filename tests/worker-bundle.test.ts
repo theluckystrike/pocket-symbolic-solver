@@ -26,12 +26,12 @@ describe('worker bundle', () => {
 });
 
 describe('mobile safety', () => {
-	it('uses no Node or Electron API: the source imports only obsidian, nerdamer, the license package and its own files', async () => {
+	it('uses no Node or Electron API: the source imports only obsidian, nerdamer, the license and hello packages and its own files', async () => {
 		const { readdirSync, readFileSync } = await import('node:fs');
 		const specs = readdirSync('src')
 			.filter((f) => f.endsWith('.ts'))
 			.flatMap((f) => [...readFileSync(`src/${f}`, 'utf8').matchAll(/from\s+'([^']+)'/g)].map((m) => m[1]!));
-		expect(specs.filter((s) => !/^(obsidian|nerdamer|@pf\/license(\/[\w-]+)?|\.\/[\w-]+(\/[\w-]+)*)$/.test(s))).toEqual([]);
+		expect(specs.filter((s) => !/^(obsidian|nerdamer|@pf\/(license|hello)(\/[\w-]+)?|\.\/[\w-]+(\/[\w-]+)*(\.json)?)$/.test(s))).toEqual([]);
 		expect(readFileSync('src/main.ts', 'utf8') + readFileSync('src/runner.ts', 'utf8')).not.toMatch(/\b(require|process|electron|Buffer)\b/);
 	});
 });

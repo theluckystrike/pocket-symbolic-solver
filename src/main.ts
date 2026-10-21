@@ -5,6 +5,8 @@ import { HistoryModal, SolveModal, needsPro } from './modal';
 import { SPONSORS, bindPro, isPro, resetPro } from './pro';
 import { SolverRunner, blobWorkerFactory } from './runner';
 import { DEFAULT_SETTINGS, PocketSymbolicSolverSettingTab, addHistory, normalizeData, upsertByName, type PocketSymbolicSolverData } from './settings';
+import { setupHello } from './hello/index';
+import WHATS_NEW from './whats-new.json';
 
 /** The bundled solver worker (src/worker.ts with nerdamer), put in by esbuild.config.mjs. */
 declare const PSS_WORKER_SOURCE: string;
@@ -31,6 +33,8 @@ export default class PocketSymbolicSolverPlugin extends Plugin {
 	private settingTab: PocketSymbolicSolverSettingTab | null = null;
 
 	async onload(): Promise<void> {
+		// First: "What's new" reads its state before the settings load (packages/hello). It does not wait.
+		setupHello(this, WHATS_NEW);
 		await this.loadAll();
 		this.runner.timeoutMs = this.data.settings.timeoutSeconds * 1000;
 		// No request here: a request needs a GitHub sign in first (Settings, Pro, Sign in with GitHub).

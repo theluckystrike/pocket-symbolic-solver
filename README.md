@@ -30,7 +30,7 @@ The modal lists each root with a number. When each root is a real number, the li
 
 ### Clear errors
 
-When the plugin cannot give a result, the modal shows one short sentence and Insert stays off. The note does not change. The messages include "Cannot parse the equation", "x is not in the equation", "No solution for x", "The equation is true for each value of x" and "The solve took longer than 5 seconds and was stopped".
+When the plugin cannot give a result, the modal shows one short sentence and Insert stays off. The messages include "Cannot parse the equation", "x is not in the equation", "No solution for x", "The equation is true for each value of x" and "The solve took longer than 5 seconds and was stopped".
 
 <img src="https://raw.githubusercontent.com/theluckystrike/pocket-symbolic-solver/HEAD/docs/error.png" alt="The modal shows the error x is not in the equation for 2*y=4, and the Insert button is off" width="720">
 
@@ -62,7 +62,7 @@ Save an equation and its symbol with a name, then pick it from the "Saved equati
 
 ### Search the solve history (Pro)
 
-The plugin keeps a list of your last 200 solves: the equation, the symbol and the result. Run "Search solve history", type part of an equation, a symbol or a result, and pick an entry. The solve modal opens with that equation and solves it again. You can turn the history off or clear it in the settings.
+The plugin keeps a list of your last 200 solves: the equation, the symbol and the result. Run "Search solve history", type part of an equation, a symbol or a result, and pick an entry. The solve modal opens with that equation and solves it again.
 
 <img src="https://raw.githubusercontent.com/theluckystrike/pocket-symbolic-solver/HEAD/docs/history.png" alt="The history search with five earlier solves, newest first" width="720">
 
@@ -88,11 +88,13 @@ The free version has the command, the solve, the preview, Insert, the error mess
 
 Pro adds saved equations, named parameter sets, tables of results and history search. To get it:
 
-1. Sponsor [theluckystrike on GitHub Sponsors](https://github.com/sponsors/theluckystrike) with $5 a month, or $15 once. Read the account and network conditions below.
+1. Sponsor [theluckystrike on GitHub Sponsors](https://github.com/sponsors/theluckystrike) with $5 a month, or $15 once.
 2. In Obsidian, open the settings of Pocket Symbolic Solver and select "Sign in with GitHub".
 3. The plugin copies a code and opens github.com/login/device. Paste the code there and approve.
 
 ## Settings
+
+After a minor or major update, this plugin opens one What's new tab in the background. The tab and settings card suggest other NoteMods plugins and Zovo Chat and link to notemods.com for feedback ([privacy](https://notemods.com/privacy/)). The tab sends no data. Turn the tab off in Settings.
 
 <img src="https://raw.githubusercontent.com/theluckystrike/pocket-symbolic-solver/HEAD/docs/settings.png" alt="The settings tab with the Pro section, the time limit slider, the history toggle and the clear history button" width="720">
 
@@ -106,7 +108,7 @@ Pro adds saved equations, named parameter sets, tables of results and history se
 
 ### Does my equation leave my device?
 
-No. nerdamer is inside `main.js`, and the solve runs in a worker that the plugin starts from that code. The solve sends no request. The only network requests are the GitHub Sponsors checks for Pro, described below, and they hold no equation or note text.
+No. nerdamer is inside `main.js`, and the solve runs in a worker that the plugin starts from that code. The solve sends no request.
 
 ### What does the plugin store?
 
