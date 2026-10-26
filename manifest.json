@@ -1,7 +1,7 @@
 {
 	"id": "pocket-symbolic-solver",
 	"name": "Pocket Symbolic Solver",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"minAppVersion": "1.13.4",
 	"description": "Solve an equation for a chosen symbol and insert the result as display math.",
 	"author": "Michael Lip",

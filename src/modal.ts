@@ -1,11 +1,11 @@
 import { Modal, Notice, Setting, SuggestModal, finishRenderMath, loadMathJax, renderMath, type App, type ButtonComponent, type Editor } from 'obsidian';
-import { isPro } from './pro';
+import { isPro, proNotice } from './pro';
 import type { SolveReply } from './protocol';
 import { searchHistory, type HistoryEntry } from './settings';
 import type PocketSymbolicSolverPlugin from './main';
 
 export function needsPro(feature: string): void {
-	new Notice(`${feature} is a pro feature. Sponsor on GitHub, then sign in from the plugin settings.`);
+	proNotice(`${feature} is a pro feature.`);
 }
 
 /**
