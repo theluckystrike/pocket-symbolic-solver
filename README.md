@@ -88,7 +88,7 @@ The free version has the command, the solve, the preview, Insert, the error mess
 
 Pro adds saved equations, named parameter sets, tables of results and history search. To get it:
 
-1. Sponsor [theluckystrike on GitHub Sponsors](https://github.com/sponsors/theluckystrike) with $5 a month, or $15 once.
+1. Sponsor [theluckystrike on GitHub Sponsors](https://github.com/sponsors/theluckystrike?frequency=one-time&metadata_source=pocket-symbolic-solver) with $5 a month, or $15 once.
 2. In Obsidian, open the settings of Pocket Symbolic Solver and select "Sign in with GitHub".
 3. The plugin copies a code and opens github.com/login/device. Paste the code there and approve.
 
@@ -130,7 +130,7 @@ The end-to-end tests run on Obsidian 1.13.4 and 1.14.4 on macOS desktop. I did n
 
 The core features are free. Pro features need a GitHub Sponsors sponsorship of theluckystrike: $5 a month or more, or $15 once. A total payment of $15 meets the payment requirement for Pro without further payment. Sign-in and the checks below still apply. Your notes stay readable and editable with or without Pro.
 
-GitHub handles the payment. Sponsor at https://github.com/sponsors/theluckystrike. You need no account for the free features. Pro needs the GitHub account that sponsors.
+GitHub handles the payment. Sponsor at https://github.com/sponsors/theluckystrike?frequency=one-time&metadata_source=pocket-symbolic-solver. You need no account for the free features. Pro needs the GitHub account that sponsors.
 
 Until you select "Sign in with GitHub" in the settings, Pocket Symbolic Solver makes no network requests. Sign in uses the GitHub device flow. Pocket Symbolic Solver sends its public client ID and the scope `read:user` to `https://github.com/login/device/code` and shows you a code. While you enter the code at https://github.com/login/device, it asks `https://github.com/login/oauth/access_token` every few seconds to check the sign-in status. The scope permits profile reads only. GitHub needs this access to show the sponsorship tier. It grants no repository scope and no write access.
 
