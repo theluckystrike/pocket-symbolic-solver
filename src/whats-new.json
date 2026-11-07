@@ -1,8 +1,9 @@
 {
 	"id": "pocket-symbolic-solver",
 	"name": "Pocket Symbolic Solver",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"changes": [
+		"The Pro notice of Pocket Symbolic Solver now says that one payment turns on Pro in every NoteMods plugin.",
 		"The Pro notice for history search now has a Sponsor on GitHub button."
 	],
 	"tip": "Without \"=\", the solver solves expression = 0, so x+1 gives x = -1.",
