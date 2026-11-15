@@ -1,6 +1,7 @@
 // Pure solver logic on top of nerdamer 2.0.0. The worker (worker.ts) and the unit tests call it.
 // main.ts does not import this file: nerdamer runs only in the worker, so a slow solve cannot block the editor.
 import nerdamer from 'nerdamer';
+import { replaceAlts, testAlts, type Alt } from './no-lookbehind';
 
 export interface Solution {
 	/** nerdamer text form, for example "-a^-1*(b-c)". */
@@ -54,8 +55,13 @@ function cleanTex(tex: string, text: string, index: string): string {
 	return tex.replace(/_\{\{n\}\}/g, index).replace(/\\mathrm\{log\}/g, '\\ln');
 }
 
+// No lookbehind (iOS before 16.4): a token is a match not after a word character (no-lookbehind.ts).
+export const INDEX_N: Alt[] = [{ re: /_n(?![\w$])/, notAfter: /[\w$]/ }];
+export const IMAGINARY: Alt[] = [{ re: /i(?![A-Za-z0-9_(])/, notAfter: /[A-Za-z0-9_]/ }];
+
 function cleanText(text: string, index: string): string {
-	return text.replace(/(?<![\w$])_n(?![\w$])/g, index);
+	// index is 'k' or 'n_0': no $ pattern, so a plain string result is the same as replace() with it.
+	return replaceAlts(text, INDEX_N, () => index);
 }
 
 /** Numeric value of a real constant solution, or null when it has symbols or i. */
@@ -71,7 +77,7 @@ function realValue(text: string): number | null {
 
 /** True when text holds the imaginary unit i as its own token. */
 export function hasImaginary(text: string): boolean {
-	return /(?<![A-Za-z0-9_])i(?![A-Za-z0-9_(])/.test(text);
+	return testAlts(text, IMAGINARY);
 }
 
 /** Splits "lhs=rhs" into an expression equal to 0. No "=" means "expr = 0". Returns null for two or more "=". */
@@ -184,7 +190,7 @@ export function substitute(zeroForm: string, symbol: string, solution: string, v
 	const residual = Number(expr(`abs(${zeroForm})`, { ...values, [symbol]: `(${full})` }).evaluate().text({ decimal: true }));
 	const size = Number(expr(`abs(${full})`).evaluate().text({ decimal: true }));
 	if (!Number.isFinite(residual) || !(residual <= 1e-7 * (1 + (Number.isFinite(size) ? size : 0)))) return null;
-	return /[A-Za-z]/.test(full.replace(/(?<![A-Za-z0-9_])i(?![A-Za-z0-9_(])/g, '')) ? sub.text() : full.replace(/-?\d+(\.\d+)?(e[-+]?\d+)?/g, (m) => shortNumber(m));
+	return /[A-Za-z]/.test(replaceAlts(full, IMAGINARY, () => '')) ? sub.text() : full.replace(/-?\d+(\.\d+)?(e[-+]?\d+)?/g, (m) => shortNumber(m));
 }
 
 /**
